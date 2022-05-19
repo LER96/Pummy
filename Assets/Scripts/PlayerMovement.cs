@@ -11,10 +11,15 @@ public class PlayerMovement : MonoBehaviour
     private float mouseX;
     private float mouseY;
     public Camera mainCmera;
+    public float jumpVelocity = 100;
+    public Rigidbody rb;
+    public float timer = 2;
+    float t;
 
     public void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        t = timer;
     }
 
     public void Update()
@@ -23,6 +28,12 @@ public class PlayerMovement : MonoBehaviour
         zMovement = Input.GetAxis("Vertical");
         mouseX = Input.GetAxis("Mouse X");
         mouseY = Input.GetAxis("Mouse Y");
+        if (Input.GetKeyDown(KeyCode.E) && t <= 0)
+        {
+            rb.AddForce(Vector3.up * jumpVelocity, ForceMode.Impulse);
+            t = timer;
+        }
+        t -= Time.deltaTime;
     }
 
     public void FixedUpdate()
