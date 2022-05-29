@@ -8,19 +8,20 @@ public class ScreenShot : MonoBehaviour
 {
     [SerializeField] RenderTexture PhoneTexture;
 
-    private Texture2D photoCapture;
+    public Image[] images= new Image[5];
+    private Texture2D []photoCapture;
     public Camera phoneCamera;
     PhotoJson  photoHolder;
     string picName;
     string json;
-    //int i;
+    int i;
     //private bool viewingPhoto = true;
 
     public void Start()
     {
-        //i = 0;
+        i = 0;
         photoHolder = new PhotoJson();
-        photoCapture = new Texture2D(PhoneTexture.width, PhoneTexture.height);
+        photoCapture = new Texture2D[5];
     }
 
     public void Update()
@@ -39,16 +40,37 @@ public class ScreenShot : MonoBehaviour
         var prevRenderTexture = RenderTexture.active;
         RenderTexture.active = PhoneTexture;
 
-        photoCapture.ReadPixels(new Rect(0, 0, PhoneTexture.width, PhoneTexture.height), 0, 0);
-        photoCapture.Apply();
+        if (i < photoCapture.Length)
+        {
+            photoCapture[i] = new Texture2D(PhoneTexture.width, PhoneTexture.height);
+            photoCapture[i].ReadPixels(new Rect(0, 0, PhoneTexture.width, PhoneTexture.height), 0, 0);
+            photoCapture[i].Apply();
+
+            //photoHolder.img = photoCapture[i];
+            //json = JsonUtility.ToJson(photoHolder);
+            //Debug.Log(json);
+
+
+            Sprite photoSprite = Sprite.Create(photoCapture[i],
+            new Rect(0.0f, 0.0f, photoCapture[i].width, photoCapture[i].height),
+            new Vector2(0.5f, 0.5f), 100.0f);
+            images[i].sprite = photoSprite;
+
+            i++;
+        }
 
         RenderTexture.active = prevRenderTexture;
 
 
+        
+        //Sprite photoSprite = Sprite.Create(photoCapture[i],
+        //    new Rect(0.0f, 0.0f, photoCapture[i].width, photoCapture[i].height),
+        //    new Vector2(0.5f, 0.5f), 100.0f);
+        //images[i].sprite = photoSprite;
 
-        photoHolder.img = photoCapture;
-        json = JsonUtility.ToJson(photoHolder);
-        Debug.Log(json);
+        //photoHolder.img = photoCapture[i];
+        //json = JsonUtility.ToJson(photoHolder);
+        //Debug.Log(json);
 
 
 
@@ -59,6 +81,9 @@ public class ScreenShot : MonoBehaviour
 
         //File.WriteAllBytes(Application.dataPath + "/Screenshot.png", bytes);
     }
+
+
+
 
     private class PhotoJson
     {
