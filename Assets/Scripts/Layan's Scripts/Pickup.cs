@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Pickup : MonoBehaviour
 {
-    [Header("Picup Settings")]
+    [Header("Pickup Settings")]
     [SerializeField] Transform holdArea;
     [SerializeField] RaycastHit hit;
     private Rigidbody _heldItem;
