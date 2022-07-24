@@ -21,7 +21,7 @@ public class PhotoCapture : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (viewingPhoto == false)
             {

@@ -29,7 +29,7 @@ public class NewPhoto : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (viewingPhoto == false)
             {
@@ -62,23 +62,24 @@ public class NewPhoto : MonoBehaviour
 
     public void ShowPhoto()
     {
-        //Sprite photoSprite = Sprite.Create(photoCapture,
-        //    new Rect(0.0f, 0.0f, photoCapture.width, photoCapture.height),
-        //    new Vector2(0.5f, 0.5f), 100.0f);
-        //photoDisplay.sprite = photoSprite;
-        //photoFrame.SetActive(true);
+        Sprite photoSprite = Sprite.Create(photoCapture,
+            new Rect(0.0f, 0.0f, photoCapture.width, photoCapture.height),
+            new Vector2(0.5f, 0.5f), 100.0f);
+        photoDisplay.sprite = photoSprite;
+        photoFrame.SetActive(true);
 
-        var imagesToLoad = Directory.GetFiles(Application.dataPath + "/screenshot.png");
-        for (int i = 0; i < imagesToLoad.Length; i++)
-        {
-            photoCapture = new Texture2D(100, 100); 
-            fileName = imagesToLoad[i];
-            bytes = File.ReadAllBytes(fileName);
-            photoCapture.LoadImage(bytes);
-            photoCapture.name = fileName;
-            ImageHolder[i].GetComponent<RawImage>().texture = photoCapture;
-        }
+        //var imagesToLoad = Directory.GetFiles(Application.dataPath + "/screenshot.png");
+        //for (int i = 0; i < imagesToLoad.Length; i++)
+        //{
+        //    photoCapture = new Texture2D(100, 100);
+        //    fileName = imagesToLoad[i];
+        //    bytes = File.ReadAllBytes(fileName);
+        //    photoCapture.LoadImage(bytes);
+        //    photoCapture.name = fileName;
+        //    ImageHolder[i].GetComponent<RawImage>().texture = photoCapture;
+        //}
     }
+
     private void RemovePhoto()
     {
         viewingPhoto = false;
