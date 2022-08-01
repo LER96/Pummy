@@ -16,24 +16,29 @@ public class PlayerMovement : MonoBehaviour
     public float timer = 2;
     float t;
 
+    public Pickup pickupReference;
+
     public void Start()
     {
+        pickupReference = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Pickup>();
         Cursor.lockState = CursorLockMode.Locked;
         t = timer;
     }
 
     public void Update()
     {
-        xMovement = Input.GetAxis("Horizontal");
-        zMovement = Input.GetAxis("Vertical");
-        mouseX = Input.GetAxis("Mouse X");
-        mouseY = Input.GetAxis("Mouse Y");
-        if (Input.GetKeyDown(KeyCode.E) && t <= 0)
+        if (pickupReference.isInteractedWithDoor == false)
         {
-            rb.AddForce(Vector3.up * jumpVelocity, ForceMode.Impulse);
-            t = timer;
+            xMovement = Input.GetAxis("Horizontal");
+            zMovement = Input.GetAxis("Vertical");
+            mouseX = Input.GetAxis("Mouse X");
+            mouseY = Input.GetAxis("Mouse Y");
         }
-        t -= Time.deltaTime;
+        else if (pickupReference.isInteractedWithDoor == true)
+        {
+            mouseX = Input.GetAxis("Mouse X");
+            mouseY = Input.GetAxis("Mouse Y");
+        }
     }
 
     public void FixedUpdate()

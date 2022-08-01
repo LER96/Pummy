@@ -6,16 +6,26 @@ using UnityEngine.UI;
 public class Pickup : MonoBehaviour
 {
     [Header("Pickup Settings")]
+    public bool isInteractedWithDoor = false;
     [SerializeField] Transform holdArea;
     [SerializeField] RaycastHit hit;
     private Rigidbody _heldItem;
     private GameObject _holdObject;
+    float yRot = 0;
+    public float ySensitivity = 300f;
 
     [Header("Physics")]
     [SerializeField] private float _pickupRange = 5f;
     [SerializeField] private float _pickupForce = 150f;
 
     [SerializeField] Image middlePoint;
+
+    public float frontOpenPosLimit = 45;
+    public float backOpenPosLimit = 45;
+
+    public GameObject frontDoorCollider;
+    public GameObject backDoorCollider;
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -53,18 +63,21 @@ public class Pickup : MonoBehaviour
             _heldItem.transform.parent = holdArea;
             _holdObject = obj;
         }
-        else if (obj.gameObject.CompareTag("Door"))
+        else if (obj.gameObject.CompareTag("Door")
+)
         {
             _heldItem = obj.GetComponent<Rigidbody>();
+            isInteractedWithDoor = true;
             _heldItem.useGravity = false;
             _heldItem.drag = 10;
-            _heldItem.transform.parent = holdArea;
+            //_heldItem.transform.parent = holdArea;
             _holdObject = obj;
         }
     }
 
     void DropObjects()
     {
+        isInteractedWithDoor = false;
         _heldItem.useGravity = true;
         _heldItem.drag = 1;
         _heldItem.constraints = RigidbodyConstraints.None;
