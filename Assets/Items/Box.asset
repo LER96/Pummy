@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Box
   icon: {fileID: 0}
+  prefab: {fileID: 1670346972435316251, guid: 3c892ff81ead58547a5019d5f0e873ae, type: 3}
