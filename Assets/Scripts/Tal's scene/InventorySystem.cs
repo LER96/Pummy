@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +15,7 @@ public class InventorySystem : MonoBehaviour
         inventory = new List<InventoryItem>();
         m_itemDictionary = new Dictionary<InventoryItemData, InventoryItem>();
     }
-    
+
     public InventoryItem Get(InventoryItemData referenceData)
     {
         if (m_itemDictionary.TryGetValue(referenceData, out InventoryItem value))
