@@ -5,36 +5,36 @@ using UnityEngine;
 public class InventoryUI : MonoBehaviour
 {
     public GameObject slotPrefab;
+    public Transform itemContent;
     public GameObject inventoryMenu;
     private bool inventoryOpen = false;
 
     private void Start()
     {
-        inventoryOpen = false;
-        inventoryMenu.SetActive(false);
+       inventoryOpen = false;
+       inventoryMenu.SetActive(false);
     }
-    // Start is called before the first frame update
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I) && !inventoryOpen)
-        {
-            inventoryMenu.SetActive(true);
-            OnUpdateInventory();
-            inventoryOpen = true;
-        }
-
-        if (Input.GetKeyDown(KeyCode.I) && inventoryOpen)
-        {
-            inventoryMenu.SetActive(false);
-            inventoryOpen = false;
-        }
+       if (Input.GetKeyDown(KeyCode.I) && !inventoryOpen)
+       {
+           inventoryMenu.SetActive(true);
+           OnUpdateInventory();
+           inventoryOpen = true;
+       }
+       else if (Input.GetKeyDown(KeyCode.I) && inventoryOpen)
+       {
+           inventoryMenu.SetActive(false);
+           inventoryOpen = false;
+       }
     }
 
-    private void OnUpdateInventory()
+    public void OnUpdateInventory()
     {
-        foreach (Transform t in transform)
+        foreach (Transform item in itemContent)
         {
-            Destroy(t.gameObject);
+            Destroy(item.gameObject);
         }
 
         DrawInventory();
@@ -50,8 +50,7 @@ public class InventoryUI : MonoBehaviour
 
     public void AddInventorySlot(InventoryItem item)
     {
-        GameObject obj = Instantiate(slotPrefab);
-        obj.transform.SetParent(transform, false);
+        GameObject obj = Instantiate(slotPrefab, itemContent);
 
         ItemSlot slot = obj.GetComponent<ItemSlot>();
         slot.SetItem(item);

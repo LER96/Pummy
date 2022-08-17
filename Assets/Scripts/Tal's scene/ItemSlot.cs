@@ -11,7 +11,10 @@ public class ItemSlot : MonoBehaviour
 
     public void SetItem(InventoryItem item)
     {
-        itemIcon.sprite = item.data.icon;
-        itemName.text = item.data.itemName;
+       itemIcon = GetComponentInChildren<Image>();
+       itemName = GetComponentInChildren<TextMeshProUGUI>();
+
+       itemIcon.sprite = item.data.icon;
+       itemName.text = item.data.itemName;
     }
 }

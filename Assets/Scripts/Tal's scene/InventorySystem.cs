@@ -26,31 +26,16 @@ public class InventorySystem : MonoBehaviour
     }
 
     public void Add(InventoryItemData referenceData)
-    {
-        if (m_itemDictionary.TryGetValue(referenceData, out InventoryItem value))
-        {
-            value.AddToStack();
-        }
-        else
-        {
-            InventoryItem newItem = new InventoryItem(referenceData);
-            inventory.Add(newItem);
-            m_itemDictionary.Add(referenceData, newItem);
-        }
+    {        
+        InventoryItem newItem = new InventoryItem(referenceData);
+        inventory.Add(newItem);
+        m_itemDictionary.Add(referenceData, newItem);        
     }
 
-    public void Remove(InventoryItemData referenceData)
-    {
-        if (m_itemDictionary.TryGetValue(referenceData, out InventoryItem value))
-        {
-            value.RemoveFromStack();
-
-            if (value.stackSize == 0)
-            {
-                inventory.Remove(value);
-                m_itemDictionary.Remove(referenceData);
-            }
-        }
+    public void Remove(InventoryItemData referenceData, InventoryItem value)
+    {        
+        inventory.Remove(value);
+        m_itemDictionary.Remove(referenceData);                   
     }
 }
 
@@ -58,21 +43,9 @@ public class InventorySystem : MonoBehaviour
 public class InventoryItem
 {
     public InventoryItemData data;
-    public int stackSize { get; private set; }
 
     public InventoryItem(InventoryItemData source)
     {
         data = source;
-        AddToStack();
-    }
-
-    public void AddToStack()
-    {
-        stackSize++;
-    }
-
-    public void RemoveFromStack()
-    {
-        stackSize--;
     }
 }
