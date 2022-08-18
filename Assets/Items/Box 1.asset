@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26547e255df5d8e4e855ad65e3c2335c, type: 3}
-  m_Name: Box
+  m_Name: Box 1
   m_EditorClassIdentifier: 
-  itemName: Box
+  itemName: Box1
   icon: {fileID: 21300000, guid: c10bfbd7413009a4d8683ee87e3a1575, type: 3}
   prefab: {fileID: 1670346972435316251, guid: 3c892ff81ead58547a5019d5f0e873ae, type: 3}

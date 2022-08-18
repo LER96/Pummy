@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class PickiupItem : MonoBehaviour
 {
-    [SerializeField] RaycastHit hit;
+    [SerializeField] RaycastHit raycastHit;
     [SerializeField] private float itemPickupRange = 5f;
 
     // Update is called once per frame
     void Update()
     {
-        if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, itemPickupRange)) 
+        if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out raycastHit, itemPickupRange)) 
         {
-            if (hit.transform.TryGetComponent<ItemObject>(out ItemObject item) && Input.GetKeyDown(KeyCode.E))
+            if (raycastHit.transform.TryGetComponent<ItemObject>(out ItemObject item) && Input.GetKeyDown(KeyCode.E))
             {
                 item.HandlePickupItem();
             }
