@@ -21,11 +21,13 @@ public class InventoryUI : MonoBehaviour
        {
            inventoryMenu.SetActive(true);
            OnUpdateInventory();
+           Cursor.lockState = CursorLockMode.Confined;
            inventoryOpen = true;
        }
        else if (Input.GetKeyDown(KeyCode.I) && inventoryOpen)
        {
            inventoryMenu.SetActive(false);
+           Cursor.lockState = CursorLockMode.Locked;
            inventoryOpen = false;
        }
     }
