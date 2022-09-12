@@ -1,5 +1,141 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7276398101310145320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 207e1eaa379db1743a31893a3b87cc58, type: 3}
+  m_Name: SR_BoundedOffset-[New Modificator]
+  m_EditorClassIdentifier: 
+  Logic: 0
+  Negate: 0
+  Global: 0
+  Enabled: 1
+  Ignore: 0
+  _editor_drawRule: 1
+  OwnerSpawner:
+    Enabled: 1
+    Name: House
+    SpawnerTag: 
+    StampPrefabID: 0
+    Parent: {fileID: -6337923074507535714}
+    Rules:
+    - {fileID: -5383248219165421350}
+    Mode: 0
+    CellCheckMode: 2
+    _Editor_SpawnerAdvancedOptionsFoldout: 0
+    OnScalledGrid: 1
+    Repeat: 1
+    DontInheritRotations: 0
+    SwitchSpawnedToStatic: 0
+    MultipleToSpawn: 0
+    UseGlobalRules: 1
+    UseParentPackageRules: 1
+    _wasEnablingGlobalRules: 1
+    ScaleAccess: 1
+    DisplayPreviewGUI: 1
+    IsSubSpawner: 0
+    _EditorDisplaySpawnerHeader: 1
+  CellAllow: 1
+  AllConditionsMet: 1
+  WorldOffset: {x: 0, y: 0, z: 0}
+  DirectionalOffset: {x: 0, y: 0, z: 0}
+  DirectFrom: 
+  CheckMode: 0
+--- !u!114 &-6337923074507535714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 671fd9c659a53a04eb310656f11c9125, type: 3}
+  m_Name: New Modificator
+  m_EditorClassIdentifier: 
+  TemporaryContainer: {fileID: 0}
+  Enabled: 1
+  ModTag: 
+  DrawMeshAndBox: 0
+  Combine: 0
+  RunEmittersIfContains: 0
+  DrawSetupFor: 0
+  OStamp: {fileID: 0}
+  DrawObjectStamps: 1
+  OMultiStamp: {fileID: 0}
+  PrefabsList:
+  - Prefab: {fileID: 7063359189673636418, guid: 9248dbfc2931ba14db575603f280cbee,
+      type: 3}
+    MainCollider: {fileID: 0}
+    subID: 0
+    _refMesh: {fileID: -1501624878150026706, guid: e5e2900c66a28d64993055abc91a813a,
+      type: 3}
+    _refCol: {fileID: 0}
+  DrawMultiObjectStamps: 1
+  Spawners: []
+  VariantOf: {fileID: 0}
+  _editor_drawStamp: 1
+  _editor_drawSpawners: 1
+  _editor_drawGlobalRules: 0
+  _editor_drawModPackRules: 0
+  _editor_shareSelected: 0
+  ParentPreset: {fileID: 11400000}
+  ParentPack: {fileID: 1361278175122437999}
+--- !u!114 &-5383248219165421350
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 749e2955633fe5c469e8987607e107ed, type: 3}
+  m_Name: SR_CompareVariable-[New Modificator]
+  m_EditorClassIdentifier: 
+  Logic: 0
+  Negate: 0
+  Global: 0
+  Enabled: 1
+  Ignore: 0
+  _editor_drawRule: 1
+  OwnerSpawner:
+    Enabled: 1
+    Name: House
+    SpawnerTag: 
+    StampPrefabID: 0
+    Parent: {fileID: -6337923074507535714}
+    Rules:
+    - {fileID: -5383248219165421350}
+    Mode: 0
+    CellCheckMode: 2
+    _Editor_SpawnerAdvancedOptionsFoldout: 0
+    OnScalledGrid: 1
+    Repeat: 1
+    DontInheritRotations: 0
+    SwitchSpawnedToStatic: 0
+    MultipleToSpawn: 0
+    UseGlobalRules: 1
+    UseParentPackageRules: 1
+    _wasEnablingGlobalRules: 1
+    ScaleAccess: 1
+    DisplayPreviewGUI: 1
+    IsSubSpawner: 0
+    _EditorDisplaySpawnerHeader: 1
+  CellAllow: 1
+  AllConditionsMet: 1
+  VariableMustBe: 2
+  ThisValue: 1
+  CompareVariable:
+    name: 
+    requiredType: 1
+    Tooltip: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,7 +230,7 @@ MonoBehaviour:
     GenerateRelations: 1
     GroupUpToSize: 8
     MaxGroupDistance: 8
---- !u!114 &6956223858544472
+--- !u!114 &488654751031279185
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,30 +254,42 @@ MonoBehaviour:
   OMultiStamp: {fileID: 0}
   PrefabsList: []
   DrawMultiObjectStamps: 1
-  Spawners:
-  - Enabled: 1
-    Name: Random
-    SpawnerTag: 
-    StampPrefabID: -1
-    Parent: {fileID: 6956223858544472}
-    Rules: []
-    Mode: 0
-    CellCheckMode: 0
-    _Editor_SpawnerAdvancedOptionsFoldout: 0
-    OnScalledGrid: 1
-    Repeat: 1
-    DontInheritRotations: 0
-    SwitchSpawnedToStatic: 0
-    MultipleToSpawn: 0
-    UseGlobalRules: 1
-    UseParentPackageRules: 1
-    _wasEnablingGlobalRules: 1
-    ScaleAccess: 1
-    DisplayPreviewGUI: 1
-    IsSubSpawner: 0
-    _EditorDisplaySpawnerHeader: 1
+  Spawners: []
   VariantOf: {fileID: 0}
-  _editor_drawStamp: 0
+  _editor_drawStamp: 1
+  _editor_drawSpawners: 1
+  _editor_drawGlobalRules: 0
+  _editor_drawModPackRules: 0
+  _editor_shareSelected: 0
+  ParentPreset: {fileID: 11400000}
+  ParentPack: {fileID: 1361278175122437999}
+--- !u!114 &1199972938726675939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 671fd9c659a53a04eb310656f11c9125, type: 3}
+  m_Name: New Modificator
+  m_EditorClassIdentifier: 
+  TemporaryContainer: {fileID: 0}
+  Enabled: 1
+  ModTag: 
+  DrawMeshAndBox: 0
+  Combine: 0
+  RunEmittersIfContains: 0
+  DrawSetupFor: 0
+  OStamp: {fileID: 0}
+  DrawObjectStamps: 1
+  OMultiStamp: {fileID: 0}
+  PrefabsList: []
+  DrawMultiObjectStamps: 1
+  Spawners: []
+  VariantOf: {fileID: 0}
+  _editor_drawStamp: 1
   _editor_drawSpawners: 1
   _editor_drawGlobalRules: 0
   _editor_drawModPackRules: 0
@@ -161,7 +309,7 @@ MonoBehaviour:
   m_Name: Root
   m_EditorClassIdentifier: 
   FieldModificators:
-  - {fileID: 6956223858544472}
+  - {fileID: 2338750207993578533}
   ParentPreset: {fileID: 11400000}
   DisableWholePackage: 0
   SeedMode: 0
@@ -194,3 +342,36 @@ MonoBehaviour:
     IsSubSpawner: 0
     _EditorDisplaySpawnerHeader: 0
   _EditorDisplayCallOnAll: 0
+--- !u!114 &2338750207993578533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 671fd9c659a53a04eb310656f11c9125, type: 3}
+  m_Name: New Modificator
+  m_EditorClassIdentifier: 
+  TemporaryContainer: {fileID: 0}
+  Enabled: 1
+  ModTag: 
+  DrawMeshAndBox: 0
+  Combine: 0
+  RunEmittersIfContains: 0
+  DrawSetupFor: 0
+  OStamp: {fileID: 0}
+  DrawObjectStamps: 1
+  OMultiStamp: {fileID: 0}
+  PrefabsList: []
+  DrawMultiObjectStamps: 1
+  Spawners: []
+  VariantOf: {fileID: 0}
+  _editor_drawStamp: 1
+  _editor_drawSpawners: 1
+  _editor_drawGlobalRules: 0
+  _editor_drawModPackRules: 0
+  _editor_shareSelected: 0
+  ParentPreset: {fileID: 11400000}
+  ParentPack: {fileID: 1361278175122437999}
