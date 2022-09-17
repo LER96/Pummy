@@ -16,28 +16,27 @@ public class PlayerMovement : MonoBehaviour
     public float timer = 2;
     float t;
 
-    public Pickup pickupReference;
+    public OpeningDoors doorReference;
 
     public void Start()
     {
-        pickupReference = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Pickup>();
+        doorReference = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<OpeningDoors>();
         Cursor.lockState = CursorLockMode.Locked;
         t = timer;
     }
 
     public void Update()
     {
-        if (pickupReference.isInteractedWithDoor == false)
+        if (doorReference.isInteractedWithDoor == false)
         {
             xMovement = Input.GetAxis("Horizontal");
             zMovement = Input.GetAxis("Vertical");
             mouseX = Input.GetAxis("Mouse X");
             mouseY = Input.GetAxis("Mouse Y");
         }
-        else if (pickupReference.isInteractedWithDoor == true)
+        else if (doorReference.isInteractedWithDoor == true)
         {
-            mouseX = Input.GetAxis("Mouse X");
-            mouseY = Input.GetAxis("Mouse Y");
+           
         }
     }
 

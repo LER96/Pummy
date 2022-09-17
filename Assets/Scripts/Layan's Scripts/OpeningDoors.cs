@@ -1,102 +1,100 @@
-﻿//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 
-//public class OpeningDoors : MonoBehaviour
-//{
-//    public float ySensitivity = 300f;
-//    public float frontOpenPosLimit = 45;
-//    public float backOpenPosLimit = 45;
+public class OpeningDoors : MonoBehaviour
+{
+    [Header("Pickup Settings")]
+    public bool isInteractedWithDoor = false;
+    [SerializeField] Transform holdArea;
+    [SerializeField] RaycastHit hit;
+    private Rigidbody _heldItem;
+    private GameObject _holdObject;
+    float yRot = 0;
+    public float ySensitivity = 300f;
 
-//    public GameObject frontDoorCollider;
-//    public GameObject backDoorCollider;
+    [Header("Physics")]
+    [SerializeField] private float _pickupRange = 5f;
+    [SerializeField] private float _pickupForce = 150f;
 
-//    bool moveDoor = false;
-//    DoorCollision doorCollision = DoorCollision.NONE;
-
-
-//    // Use this for initialization
-//    void Start()
-//    {
-//        StartCoroutine(doorMover());
-//    }
-
-//    // Update is called once per frame
-//    void Update()
-//    {
-//        if (Input.GetMouseButtonDown(0))
-//        {
-//            Debug.Log("Mouse down");
-
-//            RaycastHit hitInfo = new RaycastHit();
-//            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo))
-//            {
-//                if (hitInfo.collider.gameObject == frontDoorCollider)
-//                {
-//                    moveDoor = true;
-//                    Debug.Log("Front door hit");
-//                    doorCollision = DoorCollision.FRONT;
-//                }
-//                else if (hitInfo.collider.gameObject == backDoorCollider)
-//                {
-//                    moveDoor = true;
-//                    Debug.Log("Back door hit");
-//                    doorCollision = DoorCollision.BACK;
-//                }
-//                else
-//                {
-//                    doorCollision = DoorCollision.NONE;
-//                }
-//            }
-//        }
-
-//        if (Input.GetMouseButtonUp(0))
-//        {
-//            moveDoor = false;
-//            Debug.Log("Mouse up");
-//        }
-//    }
-
-//    IEnumerator doorMover()
-//    {
-//        bool stoppedBefore = false;
-//        float yRot = 0;
-
-//        while (true)
-//        {
-//            if (moveDoor)
-//            {
-//                stoppedBefore = false;
-//                Debug.Log("Moving Door");
+    [SerializeField] Image middlePoint;
+    [SerializeField] Camera mainCamera;
 
 
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (_holdObject == null)
+            {
+                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, _pickupRange))
+                {
+                    HoldDoor(hit.transform.gameObject);
+                }
+            }
+            else
+            {
+                LeaveDoor();
+            }
+        }
 
-//                //Check if this is front door or back
-//                if (doorCollision == DoorCollision.FRONT)
-//                {
-//                    Debug.Log("Pull Down(PULL TOWARDS)");
-//                    yRot = Mathf.Clamp(yRot, -frontOpenPosLimit, 0);
-//                    Debug.Log(yRot);
-//                    transform.localEulerAngles = new Vector3(0, -yRot, 0);
-//                }
-//                else if (doorCollision == DoorCollision.BACK)
-//                {
-//                    Debug.Log("Pull Up(PUSH AWAY)");
-//                    yRot = Mathf.Clamp(yRot, 0, backOpenPosLimit);
-//                    Debug.Log(yRot);
-//                    transform.localEulerAngles = new Vector3(0, yRot, 0);
-//                }
-//            }
-//            else
-//            {
-//                if (!stoppedBefore)
-//                {
-//                    stoppedBefore = true;
-//                    Debug.Log("Stopped Moving Door");
-//                }
-//            }
+        if (_holdObject != null)
+        {
+            OpenDoor();
+        }
 
-//            yield return null;
-//        }
+        ChangePointColor();
+    }
 
-//    }
+    void HoldDoor(GameObject obj)
+    {
+        
+        if (obj.gameObject.CompareTag("Door"))
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = false;
+            _heldItem = obj.GetComponent<Rigidbody>();
+            isInteractedWithDoor = true;
+            _heldItem.useGravity = false;
+            _heldItem.drag = 10;
+            _holdObject = obj;
+        }
+    }
+
+    void LeaveDoor()
+    {
+        isInteractedWithDoor = false;
+        _heldItem.useGravity = true;
+        _heldItem.drag = 1;
+        _heldItem.constraints = RigidbodyConstraints.None;
+        _heldItem.transform.parent = null;
+        _holdObject = null;
+    }
+
+    void OpenDoor()
+    {
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+
+        if (Vector3.Distance(_holdObject.transform.position, holdArea.position) > 0.1f && Physics.Raycast(ray, out RaycastHit raycastHit))
+        {
+            holdArea.position = raycastHit.point;
+            Vector3 moveDirection = (holdArea.position - _holdObject.transform.position);
+            _heldItem.AddForce(moveDirection * _pickupForce);
+        }
+    }
+
+    void ChangePointColor()
+    {
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, _pickupRange))
+        {
+            middlePoint.color = Color.red;
+           
+        }
+        else
+        {
+            middlePoint.color = Color.white;
+        }
+    }
+
+}
