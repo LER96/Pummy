@@ -15,6 +15,7 @@ public class CamRotate : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        transform.SetParent(body);
     }
 
     // Update is called once per frame
