@@ -78,10 +78,18 @@ public class GoTo : MonoBehaviour
     {
         isWalking=true;
         hookpoint = target.position;
+        //create a smooth transition of the hook to the hookpoint 
         body.position = Vector3.Lerp(body.position, hookpoint, walkSpeed * Time.deltaTime);
+
+        //if the distance to the hook point is less than...// start the grapling movement
         if (Vector3.Distance(body.position, hookpoint) < dropDist)
         {
-            ResetAll();
+            //player goes to the hookposition
+            transform.position = Vector3.Lerp(transform.position, hookpoint, walkSpeed * Time.deltaTime);
+            if (Vector3.Distance(transform.position, hookpoint) < dropDist)
+            {
+                ResetAll();
+            }
         }
     }
 

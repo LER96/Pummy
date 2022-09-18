@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CanGrab
   - Door
+  - WayPoint
   layers:
   - Default
   - TransparentFX
