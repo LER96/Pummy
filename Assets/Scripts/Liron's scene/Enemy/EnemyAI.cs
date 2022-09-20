@@ -1,50 +1,80 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.AI;
+﻿using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI: EnemyBase
 {
-    NavMeshAgent agent;
-    [SerializeField] List<Transform> waypoints;
-    [SerializeField] GameObject[] points;
-    [SerializeField] int indexWaypoint=0;
-    Vector3 target;
-
-    private void Start()
+    public override void EnterState(EnemyBehavior behavior)
     {
-        points = GameObject.FindGameObjectsWithTag("WayPoint");
-        for(int i=0; i<points.Length; i++)
+        behavior.points = GameObject.FindGameObjectsWithTag("WayPoint");
+        for (int i = 0; i < behavior.points.Length; i++)
         {
-            waypoints.Add(points[i].transform);
+            behavior.waypoints.Add(behavior.points[i].transform);
         }
-        agent = GetComponent<NavMeshAgent>();
-        NextPoint();
+        NextPoint(behavior);
     }
-    private void Update()
+    public override void UpdateState(EnemyBehavior behavior)
     {
-        if(Vector3.Distance(transform.position,target)<1)
+        if (Vector3.Distance(behavior.transform.position, behavior.target) < 1)
         {
-            Reset();
-            NextPoint();
+            Reset(behavior);
+            NextPoint(behavior);
         }
     }
 
-    public void NextPoint()
+    public void NextPoint(EnemyBehavior behavior)
     {
-        target = waypoints[indexWaypoint].position;
-        agent.SetDestination(target);
-    }
+        behavior.target = behavior.waypoints[behavior.indexWaypoint].position;
+        behavior.agent.SetDestination(behavior.target);
 
-    public void Reset()
+    }
+    public void Reset(EnemyBehavior behavior)
     {
-        //indexWaypoint++;
-        if (indexWaypoint < waypoints.Count)
+        if (behavior.indexWaypoint < behavior.waypoints.Count)
         {
-            indexWaypoint = Random.Range(0, waypoints.Count);
+            behavior.indexWaypoint = Random.Range(0, behavior.waypoints.Count);
         }
         else
-            indexWaypoint = 0;
+            behavior.indexWaypoint = 0;
     }
 
+
 }
+//NavMeshAgent agent;
+//[SerializeField] List<Transform> waypoints;
+//[SerializeField] GameObject[] points;
+//[SerializeField] int indexWaypoint = 0;
+//Vector3 target;
+
+//private void Start()
+//{
+//    points = GameObject.FindGameObjectsWithTag("WayPoint");
+//    for (int i = 0; i < points.Length; i++)
+//    {
+//        waypoints.Add(points[i].transform);
+//    }
+//    agent = GetComponent<NavMeshAgent>();
+//    NextPoint();
+//}
+//private void Update()
+//{
+//    if (Vector3.Distance(transform.position, target) < 1)
+//    {
+//        Reset();
+//        NextPoint();
+//    }
+
+//}
+//public void NextPoint()
+//{
+//    target = waypoints[indexWaypoint].position;
+//    agent.SetDestination(target);
+
+//}
+//public void Reset()
+//{
+//    if (indexWaypoint < waypoints.Count)
+//    {
+//        indexWaypoint = Random.Range(0, waypoints.Count);
+//    }
+//    else
+//        indexWaypoint = 0;
+//}
