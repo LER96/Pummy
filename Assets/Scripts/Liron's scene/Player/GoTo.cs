@@ -96,5 +96,6 @@ public class GoTo : MonoBehaviour
     void ResetAll()
     {
         isWalking = false;
+        
     }
 }
