@@ -12,10 +12,11 @@ public class EnemyView : MonoBehaviour
     public LayerMask grapMask;
     public LayerMask obsMask;
 
-    //[SerializeField] float distanceToGrap = 100;
+    public List<Transform> visibleTargets = new List<Transform>();
+
+    [SerializeField] Camera enemyEyes;
     [SerializeField] float delay = 0.2f;
 
-    public List<Transform> visibleTargets = new List<Transform>();
 
     private void Start()
     {
@@ -41,8 +42,9 @@ public class EnemyView : MonoBehaviour
         {
             Transform target = targetsInFieldView[i].transform;
             Vector3 dirToTarget = (target.position - transform.position).normalized;
+            Vector3 targetPos = enemyEyes.WorldToViewportPoint(target.position);
             //if the position is on the middle of the camera view// that means the player is looking right at it
-            if (Vector3.Angle(transform.position, target.position)<viewAngle/2)
+            if (targetPos.z > 0 && targetPos.z < viewRadius && targetPos.x > 0.2f && targetPos.x < 0.8f && targetPos.y > 0 && targetPos.y < 1)
             {
                 float distTarget = Vector3.Distance(transform.position, target.position);
                 //cast a ray that make sure that the target is not hiding behind anything
