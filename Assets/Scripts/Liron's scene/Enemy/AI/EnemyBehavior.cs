@@ -7,7 +7,6 @@ public class EnemyBehavior : MonoBehaviour
 {
     EnemyBase currentState;
     public EnemyAI enemyPatrol = new EnemyAI();
-    public EnemyLook enemySearch = new EnemyLook();
     public EnemyFollow enemyNotice = new EnemyFollow();
 
     [Header("Patrol mode")]
@@ -23,7 +22,6 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField] float time = 0;
 
     [Header("Constant")]
-    EnemyView fow;
     public List<Transform> grapOnSight = new List<Transform>();
     public bool look;
 
@@ -39,7 +37,6 @@ public class EnemyBehavior : MonoBehaviour
     }
     private void Update()
     {
-        CheckOnSight();
         LockOn();
         currentState.UpdateState(this);
         if (time < maxTime && look==false)
@@ -71,7 +68,6 @@ public class EnemyBehavior : MonoBehaviour
         {
             if (currentState == enemyPatrol)
             {
-                currentState = enemySearch;
                 currentState.EnterState(this);
             }
             else
@@ -83,28 +79,7 @@ public class EnemyBehavior : MonoBehaviour
         }
         
     }
-    public void CheckOnSight()
-    {
-        fow = head.GetComponent<EnemyView>();
-        if (fow.visibleTargets.Count > 0)
-        {
-            //duplicate the list
-            foreach (Transform onTarget in fow.visibleTargets)
-            {
-                if (grapOnSight.Count < fow.visibleTargets.Count)
-                {
-                    grapOnSight.Add(onTarget);
-                }
-            }
-        }
-        else
-        {
-            //delete the list
-            grapOnSight.Clear();
-        }
-    }
 
-    //
     public void LockOn()
     {
         if (grapOnSight.Count > 0)

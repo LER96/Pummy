@@ -1233,7 +1233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viewRadius: 30
-  viewAngle: 28
+  viewAngle: 30
   grapMask:
     serializedVersion: 2
     m_Bits: 2048
