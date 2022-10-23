@@ -12,6 +12,21 @@ public class TextMessageScreen : MonoBehaviour
     public void UpdateTextUI()
     {
         messageText.text = "hey how are you";
-        responeMessageText.text = "im good thank you for asking";
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+
+
+    public void FirstRespone(TextMessageText text)
+    {
+        responeMessageText.text = text.MessageText;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void SecondRespone(TextMessageText text)
+    {
+        responeMessageText.text = text.MessageText;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }
+
+
