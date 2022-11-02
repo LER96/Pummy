@@ -5,13 +5,14 @@ using TMPro;
 
 public class TextMessageScreen : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI messageText;
+    [SerializeField] TextMeshProUGUI firstMessageText;
+    [SerializeField] TextMeshProUGUI secondMessageText;
 
     [SerializeField] TextMeshProUGUI responeMessageText;
 
     public void UpdateTextUI()
     {
-        messageText.text = "hey how are you";
+        firstMessageText.text = "hey how are you";
         Cursor.lockState = CursorLockMode.Confined;
     }
 
@@ -19,13 +20,13 @@ public class TextMessageScreen : MonoBehaviour
     public void FirstRespone(TextMessageText text)
     {
         responeMessageText.text = text.MessageText;
-        Cursor.lockState = CursorLockMode.Locked;
+        secondMessageText.text = "1";
     }
 
     public void SecondRespone(TextMessageText text)
     {
         responeMessageText.text = text.MessageText;
-        Cursor.lockState = CursorLockMode.Locked;
+        secondMessageText.text = "2";
     }
 }
 
