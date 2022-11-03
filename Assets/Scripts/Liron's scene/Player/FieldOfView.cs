@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class FieldOfView : MonoBehaviour
 {
+    [Header("Draw")]
     public float viewRadius;
     [Range(0, 360)]
     public float viewAngle;
-    //public float height;
 
+    [Header("Masks")]
     public LayerMask grapMask;
     public LayerMask obsMask;
 
-    //[SerializeField] float distanceToGrap = 100;
+    public bool doesSee;
+    public List<Transform> visibleTargets = new List<Transform>();
     [SerializeField] float delay = 0.2f;
 
-    public List<Transform> visibleTargets = new List<Transform>();
 
     private void Start()
     {
@@ -50,8 +51,11 @@ public class FieldOfView : MonoBehaviour
                 //cast a ray that make sure that the target is not hiding behind anything
                 if (!Physics.Raycast(transform.position, dirToTarget, distTarget, obsMask))
                 {
+                    doesSee = true;
                     visibleTargets.Add(target);
                 }
+                else
+                    doesSee = false;
             }
         }
     }
