@@ -36,7 +36,6 @@ public class FieldOfView : MonoBehaviour
     void FindVisibleTargets()
     {
         visibleTargets.Clear();
-        doesSee = false;
         //set an array of all the object, with the specific layer, that entered the cast sphere
         Collider[] targetsInFieldView = Physics.OverlapSphere(transform.position, viewRadius, grapMask);
         for (int i = 0; i < targetsInFieldView.Length; i++)
@@ -55,7 +54,9 @@ public class FieldOfView : MonoBehaviour
                     doesSee = true;
                     visibleTargets.Add(target);
                 }
-                
+                else
+                    doesSee = false;
+
             }
         }
     }
