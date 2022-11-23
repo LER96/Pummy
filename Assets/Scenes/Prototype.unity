@@ -812,7 +812,7 @@ MonoBehaviour:
   isInteractedWithDoor: 0
   holdArea: {fileID: 551978221}
   ySensitivity: 200
-  _pickupRange: 2.5
+  _pickupRange: 3.5
   _pickupForce: 100
   middlePoint: {fileID: 424624467}
   mainCamera: {fileID: 241058359}

@@ -11,7 +11,6 @@ public class OpeningDoors : MonoBehaviour
     [SerializeField] RaycastHit hit;
     private Rigidbody _heldItem;
     private GameObject _holdObject;
-    float yRot = 0;
     public float ySensitivity = 300f;
 
     [Header("Physics")]
@@ -94,5 +93,4 @@ public class OpeningDoors : MonoBehaviour
             middlePoint.color = Color.white;
         }
     }
-
 }
