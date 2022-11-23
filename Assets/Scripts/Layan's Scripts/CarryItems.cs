@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Pickup : MonoBehaviour
+public class CarryItems : MonoBehaviour
 {
     [Header("Pickup Settings")]
     [SerializeField] Transform holdArea;
@@ -14,7 +14,7 @@ public class Pickup : MonoBehaviour
     public float ySensitivity = 300f;
 
     [Header("Physics")]
-    [SerializeField] private float _pickupRange = 5f;
+    [SerializeField] private float _pickupRange;
     [SerializeField] private float _pickupForce = 150f;
 
     [SerializeField] Image middlePoint;
@@ -40,7 +40,6 @@ public class Pickup : MonoBehaviour
         {
             MoveObjects();
         }
-
         ChangePointColor();
     }
 

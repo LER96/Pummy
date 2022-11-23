@@ -26,7 +26,7 @@ public class ScreenShot : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             StartCoroutine(CapturePhoto());
         }
@@ -58,11 +58,11 @@ public class ScreenShot : MonoBehaviour
 
             i++;
         }
-
+        else
+        {
+            i = 0;
+        }
         RenderTexture.active = prevRenderTexture;
-
-
-        
         //Sprite photoSprite = Sprite.Create(photoCapture[i],
         //    new Rect(0.0f, 0.0f, photoCapture[i].width, photoCapture[i].height),
         //    new Vector2(0.5f, 0.5f), 100.0f);
@@ -71,19 +71,11 @@ public class ScreenShot : MonoBehaviour
         //photoHolder.img = photoCapture[i];
         //json = JsonUtility.ToJson(photoHolder);
         //Debug.Log(json);
-
-
-
-
-
         //saves to png
         //byte[] bytes = photoCapture.EncodeToPNG();
 
         //File.WriteAllBytes(Application.dataPath + "/Screenshot.png", bytes);
     }
-
-
-
 
     private class PhotoJson
     {

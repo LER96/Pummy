@@ -14,23 +14,38 @@ public class Movement : MonoBehaviour
     public float groundDist = 0.3f;
     public LayerMask groundMask;
     public bool isGrounded;
+
+    [SerializeField] public OpeningDoors doorReference;
     // Update is called once per frame
+
+    private void Start()
+    {
+        doorReference = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<OpeningDoors>();
+    }
+
     void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDist, groundMask);
-        if(isGrounded && velocity.y<0)
+        if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
         }
 
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        if (doorReference.isInteractedWithDoor == false)
+        {
+            float x = Input.GetAxis("Horizontal");
+            float z = Input.GetAxis("Vertical");
 
-        Vector3 move = transform.right * x + transform.forward * z;
+            Vector3 move = transform.right * x + transform.forward * z;
 
-        control.Move(move * speed * Time.deltaTime);
+            control.Move(move * speed * Time.deltaTime);
 
-        velocity.y += gravity * Time.deltaTime;
-        control.Move(velocity * Time.deltaTime);
+            velocity.y += gravity * Time.deltaTime;
+            control.Move(velocity * Time.deltaTime);
+        }
+        else if (doorReference.isInteractedWithDoor == true)
+        {
+
+        }
     }
 }

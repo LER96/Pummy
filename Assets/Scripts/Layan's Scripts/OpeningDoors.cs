@@ -15,7 +15,7 @@ public class OpeningDoors : MonoBehaviour
     public float ySensitivity = 300f;
 
     [Header("Physics")]
-    [SerializeField] private float _pickupRange = 5f;
+    [SerializeField] private float _pickupRange;
     [SerializeField] private float _pickupForce = 150f;
 
     [SerializeField] Image middlePoint;
@@ -49,7 +49,6 @@ public class OpeningDoors : MonoBehaviour
 
     void HoldDoor(GameObject obj)
     {
-        
         if (obj.gameObject.CompareTag("Door"))
         {
             Cursor.lockState = CursorLockMode.Confined;
@@ -89,7 +88,6 @@ public class OpeningDoors : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, _pickupRange))
         {
             middlePoint.color = Color.red;
-           
         }
         else
         {
