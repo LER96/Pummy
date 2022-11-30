@@ -16,7 +16,7 @@ public class CamRotate : MonoBehaviour
     void Start()
     {
         doorReference = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<OpeningDoors>();
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
         transform.SetParent(body);
     }
 
