@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MessageTrigger : MonoBehaviour
+public class EventTrigger : MonoBehaviour
 {
     [SerializeField] private GameEvent OnPlayerDetected;
 
