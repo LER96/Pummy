@@ -1282,7 +1282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sensitivity: 300
   body: {fileID: 524464351}
-  doorReference: {fileID: 0}
+  doorReference: {fileID: 241058363}
 --- !u!114 &241058362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2475,7 +2475,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   isGrounded: 0
-  doorReference: {fileID: 0}
+  doorReference: {fileID: 241058363}
 --- !u!4 &524464351
 Transform:
   m_ObjectHideFlags: 0
@@ -4308,37 +4308,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 827953043}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d787278792a52f64097d9ddf30a121b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 754db9494dfbf98459c1166a299bd735, type: 2}
-  response:
+  _gameEvent: {fileID: 0}
+  _response:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 447211031}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 827953045}
-        m_MethodName: UpdateTextUI
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &827953045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4900,8 +4878,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 936283831}
-  m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 18.51, y: 0.8, z: -0.17}
+  m_LocalRotation: {x: -0, y: 0.38268337, z: -0, w: 0.92387956}
+  m_LocalPosition: {x: 18.51, y: 0.79999995, z: -0.17000008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4919,13 +4897,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d787278792a52f64097d9ddf30a121b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: da136b317e88818428c58c48c566e69b, type: 2}
-  response:
+  _gameEvent: {fileID: 11400000, guid: da136b317e88818428c58c48c566e69b, type: 2}
+  _response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 524464353}
-        m_MethodName: Something
+        m_MethodName: PlayAnimation
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1264233583}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6107,8 +6096,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1264233583}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -6166,12 +6155,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1264233583}
-  m_LocalRotation: {x: -0, y: -0.38268343, z: 0, w: 0.92387956}
+  m_LocalRotation: {x: -0, y: -0.38268343, z: -0, w: 0.92387956}
   m_LocalPosition: {x: 18.34213, y: 1.6620001, z: 1.9617157}
   m_LocalScale: {x: 1, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1277650058
 GameObject:
@@ -6953,7 +6942,7 @@ Transform:
   m_LocalScale: {x: 3.4113286, y: 0.99999976, z: 3.4912202}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1395078793
 MonoBehaviour:
@@ -6967,8 +6956,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d787278792a52f64097d9ddf30a121b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: a179857d07a87bb428f1e430f033421b, type: 2}
-  response:
+  _gameEvent: {fileID: 11400000, guid: a179857d07a87bb428f1e430f033421b, type: 2}
+  _response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1264233584}

@@ -9,16 +9,15 @@ public class RaycastTrigger : MonoBehaviour
     [SerializeField] LayerMask DadDoor;
     [SerializeField] Animation anim;
 
-    private void OnTriggerEnter(Collider coll)
+    void FixedUpdate()
     {
-        if (Physics.Raycast(transform.position, Vector3.forward, out hit, DadDoor))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 5f, DadDoor))
         {
             OnRayHit.Raise();
-            Debug.Log("Triggered");
         }
     }
 
-    public void Something()
+    public void PlayAnimation()
     {
         anim.Play();
     }
