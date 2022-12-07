@@ -56,7 +56,6 @@ public class FieldOfView : MonoBehaviour
                 }
                 else
                     doesSee = false;
-
             }
         }
     }

@@ -7,28 +7,28 @@ public class InventoryUI : MonoBehaviour
     public GameObject slotPrefab;
     public Transform itemContent;
     public GameObject inventoryMenu;
-    private bool inventoryOpen = false;
+    private bool _inventoryOpen = false;
 
     private void Start()
     {
-       inventoryOpen = false;
+       _inventoryOpen = false;
        inventoryMenu.SetActive(false);
     }
 
     void Update()
     {
-       if (Input.GetKeyDown(KeyCode.I) && !inventoryOpen)
+       if (Input.GetKeyDown(KeyCode.I) && !_inventoryOpen)
        {
            inventoryMenu.SetActive(true);
            OnUpdateInventory();
            Cursor.lockState = CursorLockMode.Confined;
-           inventoryOpen = true;
+           _inventoryOpen = true;
        }
-       else if (Input.GetKeyDown(KeyCode.I) && inventoryOpen)
+       else if (Input.GetKeyDown(KeyCode.I) && _inventoryOpen)
        {
            inventoryMenu.SetActive(false);
            Cursor.lockState = CursorLockMode.Locked;
-           inventoryOpen = false;
+           _inventoryOpen = false;
        }
     }
 
