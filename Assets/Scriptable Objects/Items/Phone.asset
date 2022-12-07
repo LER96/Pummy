@@ -15,3 +15,4 @@ MonoBehaviour:
   itemName: Phone
   icon: {fileID: 21300000, guid: 734a30c58b489044180bb4a0ffdbc688, type: 3}
   prefab: {fileID: 100000, guid: 4e9bb637798979a4ca9e30741b7e2c77, type: 3}
+  button: {fileID: 2567267821608191495, guid: 9fbd3ab8e76c10847be701a3948d816a, type: 3}
