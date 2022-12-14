@@ -6,25 +6,30 @@ using TMPro;
 public class LockCode : MonoBehaviour
 {
     [SerializeField] string password;
-    [SerializeField] Canvas lockerCanvas;
     [SerializeField] TMP_Text _lockerCode;
+    [SerializeField] GameObject lockCamera;
+    public bool IsLockPressed = false;
     string codeText = "";
 
     private void Start()
     {
-        if (lockerCanvas.enabled)
-        {
-            Cursor.lockState = CursorLockMode.Confined;
-        }
+        lockCamera.SetActive(false);
     }
 
     private void Update()
     {
+        if (IsLockPressed == true)
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            lockCamera.SetActive(true);
+        }
+
         _lockerCode.text = codeText;
 
         if (codeText == password)
         {
-            lockerCanvas.enabled = false;
+            lockCamera.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         else if (codeText.Length >= 4)
@@ -40,6 +45,8 @@ public class LockCode : MonoBehaviour
 
     public void CloseLocker()
     {
-        lockerCanvas.enabled = false;
+        IsLockPressed = false; 
+        lockCamera.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }

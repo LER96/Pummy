@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,5 +11,16 @@ public class InventoryItemData : ScriptableObject
     public Sprite icon;
     public GameObject prefab;
     public Button button;
+    public ActionSO action;
+
+    public void Init(Action ac)
+    {
+        button.onClick.AddListener(() => ac.Invoke());
+    }
+}
+
+public class ActionSO : ScriptableObject
+{
+
 }
 

@@ -8,6 +8,8 @@ public class CarryItems : MonoBehaviour
     [Header("Pickup Settings")]
     [SerializeField] Transform holdArea;
     [SerializeField] RaycastHit hit;
+    [SerializeField] LayerMask lockerMask;
+    [SerializeField] LockCode _lock;
     private Rigidbody _heldItem;
     private GameObject _holdObject;
     float yRot = 0;
@@ -16,10 +18,14 @@ public class CarryItems : MonoBehaviour
     [Header("Physics")]
     [SerializeField] private float _pickupRange;
     [SerializeField] private float _pickupForce = 150f;
-
     [SerializeField] Image middlePoint;
 
     private void Update()
+    {
+        CarryingItems();
+    }
+
+    public void CarryingItems()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -33,6 +39,12 @@ public class CarryItems : MonoBehaviour
             else
             {
                 DropObjects();
+            }
+
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, _pickupRange, lockerMask))
+            {
+                _lock.IsLockPressed = true;
+                Debug.Log("pressed");
             }
         }
 
