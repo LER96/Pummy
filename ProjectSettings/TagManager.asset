@@ -8,6 +8,8 @@ TagManager:
   - Door
   - WayPoint
   - DoorTrigger
+  - ExitRoomTrigger
+  - InsideRoomTrigger
   layers:
   - Default
   - TransparentFX
@@ -26,7 +28,7 @@ TagManager:
   - Panic
   - DadDoor
   - LockPad
-  - 
+  - ExitDorr
   - 
   - 
   - 

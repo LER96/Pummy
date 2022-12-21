@@ -8,6 +8,7 @@ public class LockCode : MonoBehaviour
     [SerializeField] string password;
     [SerializeField] TMP_Text _lockerCode;
     [SerializeField] GameObject lockCamera;
+    [SerializeField] GameObject door;
     public bool IsLockPressed = false;
     string codeText = "";
 
@@ -29,6 +30,7 @@ public class LockCode : MonoBehaviour
         if (codeText == password)
         {
             lockCamera.SetActive(false);
+            door.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
         }
 
