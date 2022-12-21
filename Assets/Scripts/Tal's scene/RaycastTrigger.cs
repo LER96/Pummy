@@ -7,8 +7,10 @@ public class RaycastTrigger : MonoBehaviour
     [SerializeField] private GameEvent OnRayHit;
     [SerializeField] RaycastHit hit;
     [SerializeField] LayerMask DadDoor;
-    [SerializeField] Animation anim;
+    [SerializeField] Animation animation;
     private bool isInTrigger = false;
+    [SerializeField] GameObject light;
+
     void FixedUpdate()
     {
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 5f, DadDoor) && isInTrigger == true)
@@ -27,6 +29,6 @@ public class RaycastTrigger : MonoBehaviour
 
     public void PlayAnimation()
     {
-        anim.Play();
+        animation.Play();
     }
 }
